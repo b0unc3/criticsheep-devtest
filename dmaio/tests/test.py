@@ -1,10 +1,8 @@
 import unittest
 from fastapi.testclient import TestClient
-from app.main import app, get_db
+from app.main import app, get_db, Base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.main import Base
-from datetime import datetime, timezone
 
 DATABASE_URL = "sqlite:///./elevator.db" 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
@@ -23,11 +21,10 @@ client = TestClient(app)
 
 class TestAPI(unittest.TestCase):
     def test_create_elevator(self):
-        response = client.post("/elevators/", json={"name": "Elevator A", "location": "Building 1"})
+        response = client.post("/elevators/", json={"name": "Elevator Test", "location": "Building Test"})
         self.assertEqual(response.status_code, 200)
     
     def test_log_movement(self):
-        #formatted_time = datetime.now(timezone.utc).isoformat()
         response = client.post("/movements/", 
                 json={
                     "elevator_id": 1, 
