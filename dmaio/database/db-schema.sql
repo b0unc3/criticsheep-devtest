@@ -1,4 +1,4 @@
--- Elevators table: Tracks each elevator, its current state, and resting behavior
+-- Elevators table: Tracks each elevator
 CREATE TABLE elevators (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
@@ -17,7 +17,5 @@ CREATE TABLE movements (
 );
 
 -- -- Indexes for data queries
--- CREATE INDEX idx_elevator_status ON elevators(status);
--- CREATE INDEX idx_calls_requested_floor ON elevator_calls(requested_floor);
-CREATE INDEX idx_movements_start_floor ON movements(start_floor);
-CREATE INDEX idx_movements_end_floor ON movements(end_floor);
+-- CREATE INDEX idx_movements_start_floor ON movements(start_floor);
+-- CREATE INDEX idx_movements_end_floor ON movements(end_floor);
